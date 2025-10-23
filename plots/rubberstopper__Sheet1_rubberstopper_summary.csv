@@ -1,0 +1,14 @@
+metric,value
+n,14
+mean_g_per_cm3,1.513571428571429
+std_sample_ddof1_g_per_cm3,0.21190009049466765
+sem_g_per_cm3,0.05663268134695999
+median_g_per_cm3,1.5950000000000002
+iqr_g_per_cm3,0.27500000000000013
+min_g_per_cm3,1.1
+max_g_per_cm3,1.9
+missing_count,0
+outlier_count,0
+converted_from,
+density_column,Density (kg m-3).
+uncertainty_column,Absolute Uncertainty (kg/m^3)
