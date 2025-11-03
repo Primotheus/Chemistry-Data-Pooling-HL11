@@ -222,28 +222,28 @@ def plot_values(values: pd.Series, metrics: dict, name: str):
     std = metrics["std_sample"]
     combined_unc = metrics["combined_unc"]
 
-    # Histogram
-    fig, ax = plt.subplots(figsize=(6, 3.5))
-    ax.hist(values, bins=12, edgecolor="black", alpha=0.75)
-    ax.axvline(mean, linestyle="--", linewidth=1.2, label=f"mean = {mean:.4g}")
-    if n > 1:
-        ax.axvline(mean + std, linestyle=":", linewidth=1, label=f"mean ± 1σ")
-        ax.axvline(mean - std, linestyle=":", linewidth=1)
-    ax.set_xlabel("Value")
-    ax.set_ylabel("Count")
-    ax.set_title(f"{name} — Histogram")
-    ax.legend(fontsize=8)
-    fig.tight_layout()
-    fig.savefig(OUT_DIR / f"{name}_hist.png")
-    plt.close(fig)
+    # # Histogram
+    # fig, ax = plt.subplots(figsize=(6, 3.5))
+    # ax.hist(values, bins=12, edgecolor="black", alpha=0.75)
+    # ax.axvline(mean, linestyle="--", linewidth=1.2, label=f"mean = {mean:.4g}")
+    # if n > 1:
+    #     ax.axvline(mean + std, linestyle=":", linewidth=1, label=f"mean ± 1σ")
+    #     ax.axvline(mean - std, linestyle=":", linewidth=1)
+    # ax.set_xlabel("Value")
+    # ax.set_ylabel("Count")
+    # ax.set_title(f"{name} — Histogram")
+    # ax.legend(fontsize=8)
+    # fig.tight_layout()
+    # fig.savefig(OUT_DIR / f"{name}_hist.png")
+    # plt.close(fig)
 
-    # Boxplot
-    fig, ax = plt.subplots(figsize=(4, 3.5))
-    ax.boxplot(values, vert=True, tick_labels=[name])  # Changed 'labels' to 'tick_labels'
-    ax.set_title(f"{name} — Boxplot")
-    fig.tight_layout()
-    fig.savefig(OUT_DIR / f"{name}_box.png")
-    plt.close(fig)
+    # # Boxplot
+    # fig, ax = plt.subplots(figsize=(4, 3.5))
+    # ax.boxplot(values, vert=True, tick_labels=[name])  # Changed 'labels' to 'tick_labels'
+    # ax.set_title(f"{name} — Boxplot")
+    # fig.tight_layout()
+    # fig.savefig(OUT_DIR / f"{name}_box.png")
+    # plt.close(fig)
 
     # Value plot (Index Plot)
     fig, ax = plt.subplots(figsize=(7, 3.5))
@@ -419,7 +419,6 @@ def main():
                 print(f"Skipping sheet '{sname}' (raw station data).")
                 continue
 
-            # --- [GEMINI] MODIFICATION START ---
             # Special handling for the "Density Cubes" sheet
             if "density cubes" in sname.lower():
                 print(f"Found '{sname}'. Applying special multi-metal processing.")
@@ -444,30 +443,23 @@ def main():
                     key = f"{Path(f).stem}__{sname}__{metal_name}"
                     print(f"  Processing sub-sheet: {key}")
                     
-                    # --- [GEMINI] NEW ---
                     # Create the individual scatter plot for this metal
                     plot_metal_density_scatter(metal_df, key.replace(" ", "_")[:40])
-                    # --- [GEMINI] END ---
                     
                     # Process this individual metal's DataFrame
-                    # --- [GEMINI] MODIFIED ---
                     # Set create_standard_plots=False to skip hist, box, index plots
                     metrics = process_sheet(metal_df, key, writer, create_standard_plots=False)
                     
                     # Report stats to console
                     if metrics:
                         print(f"  > {metal_name} Stats: Mean = {metrics['mean']:.4g}, Std Dev = {metrics['std_sample']:.4g}")
-                    # --- [GEMINI] END ---
                     results[key] = metrics
                 
-                # We've handled this sheet, so skip the default processing
                 continue 
-            # --- [GEMINI] MODIFICATION END ---
 
             # Default processing for all other sheets
             key = f"{Path(f).stem}__{sname}"
             
-            # --- [GEMINI] MODIFIED ---
             # Default to True, but set to False for 'reaction time'
             create_plots = True
             if "reaction time" in sname.lower():
@@ -476,7 +468,6 @@ def main():
                 plot_reaction_time_scatter(df, key.replace(" ", "_")[:40])
                 
             metrics = process_sheet(df, key, writer, create_standard_plots=create_plots)
-            # --- [GEMINI] END ---
             results[key] = metrics
 
     # Create the final summary tab
