@@ -2,8 +2,6 @@
 """
 chem_data_pooling.py
 Finalized version — IB Chemistry HL 11 Data Pooling (Density, Reaction Time)
-Author: Luke (John Sneppor)
-Updated by Gemini to handle wide-format 'Density Cubes' sheet.
 """
 
 import os
