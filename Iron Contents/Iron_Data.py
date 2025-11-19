@@ -185,7 +185,7 @@ if available:
     plt.legend()
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig(OUT_DIR / "ABCDE_mean_plus_std.png", dpi=150)
+    plt.savefig(OUT_DIR / "mean_std_ABCDE.png", dpi=150)
     plt.close()
 else:
     print("No Solution A-E runs found to plot subset.")
@@ -206,7 +206,7 @@ plt.title("Mean spectrum ± 1σ")
 plt.legend()
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig(OUT_DIR / "mean_plus_std.png", dpi=150)
+plt.savefig(OUT_DIR / "mean_std_all.png", dpi=150)
 plt.close()
 
 # Heatmap (runs × wavelength) — reorder runs for display
@@ -262,7 +262,7 @@ for run, g in df.groupby(run_col):
 
 # Save summary CSV
 summary_df = pd.DataFrame(summary_rows)
-summary_path = OUT_DIR / "iron_runs_summary.csv"
+summary_path = OUT_DIR / "iron_summary.csv"
 summary_df.to_csv(summary_path, index=False)
 print(f"Saved summary -> {summary_path}")
 
@@ -281,7 +281,7 @@ plt.title("All Runs with Peak Markers")
 plt.legend(ncol=2, fontsize="small")
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig(OUT_DIR / "All_unk_peak_runs.png", dpi=150)
+plt.savefig(OUT_DIR / "all_unk_peak_runs.png", dpi=150)
 plt.close()
 
 print("Plots saved in:", OUT_DIR)
