@@ -150,7 +150,7 @@ plt.title("Overlay of all runs")
 plt.legend(ncol=2, fontsize="small")
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig(OUT_DIR / "all_unk_runs.png", dpi=150)
+plt.savefig(OUT_DIR / "all_unk.png", dpi=150)
 plt.close()
 
 # ----- New: overlay and mean±std for Solution A-E only (Run 1-5) -----
@@ -168,7 +168,7 @@ if available:
     plt.legend(ncol=2, fontsize='small')
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig(OUT_DIR / "all_ABCDE_runs.png", dpi=150)
+    plt.savefig(OUT_DIR / "all_ABCDE.png", dpi=150)
     plt.close()
 
     # mean ± std across the selected solutions
@@ -281,7 +281,7 @@ plt.title("All Runs with Peak Markers")
 plt.legend(ncol=2, fontsize="small")
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig(OUT_DIR / "all_unk_peak_runs.png", dpi=150)
+plt.savefig(OUT_DIR / "all_unk_peak.png", dpi=150)
 plt.close()
 
 print("Plots saved in:", OUT_DIR)
