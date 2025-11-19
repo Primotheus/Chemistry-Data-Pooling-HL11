@@ -277,11 +277,11 @@ for row in summary_rows:
         plt.scatter([row["max_wavelength"]], [row["max_absorbance"]], s=30, marker="x", color="red")
 plt.xlabel(f"{wavelength_col}")
 plt.ylabel(f"{absorb_col}")
-plt.title("Overlay with main-peak markers (red X)")
+plt.title("All Runs with Peak Markers")
 plt.legend(ncol=2, fontsize="small")
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig(OUT_DIR / "overlay_with_peak_markers.png", dpi=150)
+plt.savefig(OUT_DIR / "All_unk_peak_runs.png", dpi=150)
 plt.close()
 
 print("Plots saved in:", OUT_DIR)
